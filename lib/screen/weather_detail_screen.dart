@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:untitled/data/model/current_weather.dart';
@@ -40,31 +41,69 @@ class _WeatherDetailScreenState extends State<WeatherDetailScreen> {
             width: double.infinity,
             height: double.infinity,
             decoration: const BoxDecoration(
-                gradient: LinearGradient(
-                    begin: Alignment.bottomCenter,
-                    end: Alignment.topCenter,
-                    colors: [
-                  Color(0xff5C6BC0),
-                  Color(0xff3949AB),
-                  Color(0xff283593),
-                ]),
+              gradient: LinearGradient(
+                  begin: Alignment.bottomCenter,
+                  end: Alignment.topCenter,
+                  colors: [
+                    Color(0xff5C6BC0),
+                    Color(0xff3949AB),
+                    Color(0xff283593),
+                  ]),
             ),
-            child:
-            Padding(
+            child: Padding(
               padding: const EdgeInsets.all(20.0),
               child: Column(
                 children: [
-                  Text('Country : ${detail!.sys!.country}',style:const  TextStyle(color: Colors.white,fontSize: 20,),),
+                  Text(
+                    'Country : ${detail!.sys!.country}',
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 20,
+                    ),
+                  ),
                   const Divider(),
-                  Text('Max Temp : ${detail.main!.tempMax}',style:const  TextStyle(color: Colors.white,fontSize: 20,),),
+                  Text(
+                    'Max Temp : ${detail.main!.tempMax}',
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 20,
+                    ),
+                  ),
                   const Divider(),
-                  Text('Min Temp : ${detail.main!.tempMin}',style:const  TextStyle(color: Colors.white,fontSize: 20,),),
+                  Text(
+                    'Min Temp : ${detail.main!.tempMin}',
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 20,
+                    ),
+                  ),
                   const Divider(),
-                  Image.network('https://openweathermap.org/img/wn/${detail.weather![0].icon}@2x.png'),
+                  CachedNetworkImage(
+                    imageUrl:
+                        ('https://openweathermap.org/img/wn/${detail.weather![0].icon}@2x.png'),
+                    placeholder: (_, __) => const Center(
+                      child: CircularProgressIndicator(color: Colors.white,),
+                    ),
+                    errorWidget: (context,url,error)=>const Center(child: Icon(Icons.error),),
+                    fadeInDuration:const Duration(seconds: 2),
+                    fadeInCurve: Curves.bounceInOut,
+                  ),
                   const Divider(),
-                  Text('${detail.weather![0].main}',style:const  TextStyle(color: Colors.white,fontSize:30,),),
+                  Text(
+                    '${detail.weather![0].main}',
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 30,
+                    ),
+                  ),
                   const Divider(),
-                  Text('Current Temp : ${detail.main!.temp}',style:const  TextStyle(color: Colors.white,fontSize: 20,),),
+                  Text(
+                    'Current Temp : ${detail.main!.temp}',
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 20,
+                    ),
+                  ),
                 ],
               ),
             ),
