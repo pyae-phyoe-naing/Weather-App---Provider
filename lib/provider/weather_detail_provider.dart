@@ -4,7 +4,7 @@ import 'package:untitled/data/weather_repository.dart';
 
 class WeatherDetailProvider extends ChangeNotifier {
   late WeatherRepository _weatherRepository;
-  late CurrentWeatherModel _currentWeatherModel;
+   CurrentWeatherModel? currentWeatherModel;
   bool isError = false;
   bool isLoading = false;
 
@@ -15,7 +15,7 @@ class WeatherDetailProvider extends ChangeNotifier {
     try{
       isLoading = true;
       notifyListeners();
-      _currentWeatherModel  = await _weatherRepository.getCurrentWeather(lat: lat, lon: lon);
+      currentWeatherModel  = await _weatherRepository.getCurrentWeather(lat: lat, lon: lon);
       isError = false;
       isLoading = false;
       notifyListeners();
