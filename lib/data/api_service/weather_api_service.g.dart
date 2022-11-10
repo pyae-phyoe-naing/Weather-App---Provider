@@ -58,12 +58,14 @@ class _WeatherApiService implements WeatherApiService {
     required lat,
     required lon,
     required appId,
+    required unit,
   }) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
       r'lat': lat,
       r'lon': lon,
       r'appid': appId,
+      r'units': unit,
     };
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};

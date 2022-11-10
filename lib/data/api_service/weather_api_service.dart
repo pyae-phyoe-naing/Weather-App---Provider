@@ -13,6 +13,6 @@ abstract class WeatherApiService{
    Future<List<CityModel>> searchCity({@Query('q') required String city,@Query('limit') required int limit,@Query('appid') required String appId});
 
    @GET(currentWeatherUrl)
-   Future<CurrentWeatherModel>currentWeather({@Query('lat') required double lat,@Query('lon') required double lon,@Query('appid') required String appId});
+   Future<CurrentWeatherModel>currentWeather({@Query('lat') required double lat,@Query('lon') required double lon,@Query('appid') required String appId,@Query('units') required String unit});
 
 }
