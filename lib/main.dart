@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:untitled/provider/search_city_provider.dart';
+import 'package:untitled/provider/weather_detail_provider.dart';
 import 'package:untitled/screen/home_screen.dart';
 
 void main() {
@@ -12,15 +13,16 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  MaterialApp(
-      theme: ThemeData(
-        primarySwatch: Colors.indigo
-      ),
-      debugShowCheckedModeBanner: false,
-      home: ChangeNotifierProvider<SearchCityProvider>(
-        create: (context)=>SearchCityProvider(),
-        child:const HomeScreen(),
-      ),
-    );
+    return MultiProvider(providers: [
+      ChangeNotifierProvider<SearchCityProvider>(create: (context)=>SearchCityProvider()),
+      ChangeNotifierProvider<WeatherDetailProvider>(create: (context)=>WeatherDetailProvider())
+    ],
+    child:  MaterialApp(
+        theme: ThemeData(
+            primarySwatch: Colors.indigo
+        ),
+        debugShowCheckedModeBanner: false,
+        home: const HomeScreen()
+    ),);
   }
 }
