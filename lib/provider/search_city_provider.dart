@@ -4,20 +4,24 @@ import 'package:untitled/data/weather_repository.dart';
 
 class SearchCityProvider extends ChangeNotifier{
   late WeatherRepository _weatherRepository;
-  late bool isError;
+   bool isError = false;
+  bool isLoading = false;
   late List<CityModel> cities;
   SearchCityProvider(){
     _weatherRepository = WeatherRepository();
     cities = [];
-    isError = false;
   }
   void getSearchCity({required String city})async{
      try{
+       isLoading = true;
+       notifyListeners();
       cities = await _weatherRepository.getSearchCity(city: city);
       isError = false;
+      isLoading = false;
       notifyListeners();
      }catch(e){
        isError = true;
+       isLoading = false;
        notifyListeners();
      }
   }
