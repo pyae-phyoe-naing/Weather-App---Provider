@@ -1,4 +1,5 @@
 
+import 'package:retrofit/dio.dart';
 import 'package:retrofit/http.dart';
 import 'package:untitled/data/model/city_model.dart';
 import 'package:untitled/data/model/current_weather.dart';
@@ -10,9 +11,9 @@ abstract class WeatherApiService{
    factory WeatherApiService (Dio dio)=> _WeatherApiService(dio);
 
    @GET(searchCityUrl)
-   Future<List<CityModel>> searchCity({@Query('q') required String city,@Query('limit') required int limit,@Query('appid') required String appId});
+   Future<List<CityModel>> searchCity({@Query('q') required String city,@Query('limit') required int limit,@Query('appid') required String appId, @DioOptions() required Options options});
 
    @GET(currentWeatherUrl)
-   Future<CurrentWeatherModel>currentWeather({@Query('lat') required double lat,@Query('lon') required double lon,@Query('appid') required String appId,@Query('units') required String unit});
+   Future<CurrentWeatherModel>currentWeather({@Query('lat') required double lat,@Query('lon') required double lon,@Query('appid') required String appId,@Query('units') required String unit, @DioOptions() required Options options});
 
 }

@@ -18,7 +18,7 @@ class _WeatherDetailScreenState extends State<WeatherDetailScreen> {
       appBar: AppBar(title: Text(widget.name), centerTitle: true),
       body: Consumer<WeatherDetailProvider>(
         builder: (context, WeatherDetailProvider wdp, child) {
-          CurrentWeatherModel detail = wdp.currentWeatherModel!;
+          CurrentWeatherModel? detail = wdp.currentWeatherModel;
           if (wdp.isLoading) {
             return const Padding(
               padding: EdgeInsets.all(50.0),
@@ -54,7 +54,7 @@ class _WeatherDetailScreenState extends State<WeatherDetailScreen> {
               padding: const EdgeInsets.all(20.0),
               child: Column(
                 children: [
-                  Text('Country : ${detail.sys!.country}',style:const  TextStyle(color: Colors.white,fontSize: 20,),),
+                  Text('Country : ${detail!.sys!.country}',style:const  TextStyle(color: Colors.white,fontSize: 20,),),
                   const Divider(),
                   Text('Max Temp : ${detail.main!.tempMax}',style:const  TextStyle(color: Colors.white,fontSize: 20,),),
                   const Divider(),

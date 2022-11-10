@@ -38,7 +38,7 @@ class CityListWidget extends StatelessWidget {
               return InkWell(
                 onTap: (){
                   weatherDetailProvider.getCurrentWeatherDetail(lat: cities[index].lat ?? 0.0, lon: cities[index].lon ?? 0.0);
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context)=>WeatherDetailScreen(name: cities[index].name!,)));
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context)=>WeatherDetailScreen(name: cities[index].name ?? '',)));
                 },
                 child: Card(
                   child: Padding(
